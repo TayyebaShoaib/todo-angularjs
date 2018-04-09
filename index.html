@@ -13,15 +13,26 @@
 </head>
 <body ng-app="todoListApp">
     <h1>My Todos</h1>
-    <div class="list">
-        <input type="checkbox">
-        <label class="editing-label">A sample todo!</label>
-        <input class="editing-label" type="text">
-    </div>
-    <div class="actions">
-        <a href="">edit</a>
-        <a href="">save</a>
-        <a href="" class="delete">delete</a>
+    <div ng-controller="mainCtrl" class="list">
+        <div ng-repeat="todo in todos"
+             ng-class="{'editing-item': editing, 'edited': todo.edited}" />
+
+            <input ng-model="todo.completed" type="checkbox">
+
+            <label ng-hide="editing" class="editing-label">{{todo.name}}</label>
+
+            <input ng-blur="editing = false;" class="editing-label" type="text"
+                   ng-change="todo.edited = true"
+                   ng-show="editing"
+                   ng-model="todo.name" />
+
+            <div class="actions">
+                <a href="" ng-click=" editing = !editing ">edit</a>
+                <a href="">save</a>
+                <a href="" class="delete">delete</a>
+            </div>
+
+        </div>
     </div>
 </body>
 </html>
