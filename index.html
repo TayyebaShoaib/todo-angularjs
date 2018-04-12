@@ -13,6 +13,9 @@
 <body ng-app="todoListApp">
     <h1>My Todos</h1>
     <div ng-controller="mainCtrl" class="list">
+        <div class="add">
+            <a href="" ng-click="addTodo()">+ Add a New Task</a>
+        </div>
         <div ng-repeat="todo in todos"
              ng-class="{'editing-item': editing, 'edited': todo.edited}" />
 
@@ -27,8 +30,8 @@
 
             <div class="actions">
                 <a href="" ng-click=" editing = !editing ">edit</a>
-                <a href="" ng-click="helloConsole()">save</a>
-                <a href="" class="delete">delete</a>
+                <a href="" ng-click=" saveTodo(todo) ">save</a>
+                <a href="" ng-click=" deleteTodo(todo, $index) " class="delete">delete</a>
             </div>
 
         </div>
